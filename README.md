@@ -455,6 +455,10 @@ The feature and design requirements above remain the project reference.
 - Optional local task reminders, notification permission and preference
   controls, reminder rescheduling, and task navigation from notification taps.
 - Confirmed local task-data clearing.
+- An original orange-and-yellow calendar/checklist launcher icon with an
+  adaptive Android icon and Android 13 monochrome asset.
+- A warm-white native Android launch splash and an animated branded Flutter
+  splash shown while local tasks and reminders initialize.
 
 The theme preference control is a visual preference preview; it does not yet
 change the application theme. There is no account, cloud sync, or online
@@ -489,6 +493,8 @@ test/
   *_test.dart       Database, task, productivity, and widget tests
 android/
   app/              Android manifest, activity, and Gradle configuration
+assets/
+  branding/         DailyFlow launcher, splash, and monochrome logo artwork
 ```
 
 ### Local Database
@@ -539,6 +545,22 @@ Debug and release APKs are generated under
 the debug signing configuration for local build verification only. A
 publishable APK requires a user-managed release keystore and signing
 configuration; do not commit signing credentials.
+
+### App Branding
+
+The Android launcher icon is generated from `assets/branding/` using
+`flutter_launcher_icons`; the native Android splash is generated with
+`flutter_native_splash`. After changing the logo artwork or branding
+configuration, run:
+
+```bash
+dart run flutter_launcher_icons
+dart run flutter_native_splash:create
+```
+
+The Flutter splash uses the existing theme colors and app name/tagline, and
+automatically gives way to the existing dashboard after task initialization.
+If task loading fails, the existing retryable error screen is shown instead.
 
 ### Known Limitations
 

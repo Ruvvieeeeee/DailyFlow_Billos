@@ -64,6 +64,29 @@ void main() {
     expect(find.byTooltip('Add task'), findsOneWidget);
   });
 
+  testWidgets('shows branding while the application initializes', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      DailyFlowApp(
+        databaseService: databaseService,
+        notificationClient: notificationClient,
+      ),
+    );
+
+    expect(find.byKey(const ValueKey('dailyflow-splash')), findsOneWidget);
+    expect(find.text('DailyFlow'), findsOneWidget);
+    expect(find.text('Plan Your Day, Flow Your Way.'), findsOneWidget);
+    expect(find.byType(Image), findsOneWidget);
+
+    await tester.runAsync(databaseService.getTasks);
+    await pumpFrames(tester);
+
+    expect(find.byKey(const ValueKey('dailyflow-splash')), findsNothing);
+    expect(find.text('Your daily overview'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('shows empty states when the database has no tasks', (
     tester,
   ) async {

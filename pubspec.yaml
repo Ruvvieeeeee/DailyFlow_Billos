@@ -21,7 +21,30 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.8
   sqflite_common_ffi: ^2.4.6
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/branding/dailyflow_logo.png
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: assets/branding/dailyflow_launcher.png
+  adaptive_icon_background: "#FFFBF2"
+  adaptive_icon_foreground: assets/branding/dailyflow_logo.png
+  adaptive_icon_monochrome: assets/branding/dailyflow_monochrome.png
+  min_sdk_android: 24
+
+flutter_native_splash:
+  color: "#FFFBF2"
+  image: assets/branding/dailyflow_native_splash.png
+  android: true
+  ios: false
+  android_12:
+    color: "#FFFBF2"
+    image: assets/branding/dailyflow_native_splash.png
+    icon_background_color: "#FFFBF2"

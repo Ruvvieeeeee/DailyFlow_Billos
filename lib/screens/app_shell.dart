@@ -9,6 +9,7 @@ import '../services/reminder_service.dart';
 import '../services/task_store.dart';
 import '../utils/app_colors.dart';
 import '../widgets/bottom_navigation.dart';
+import '../widgets/dailyflow_splash_screen.dart';
 import 'add_task_screen.dart';
 import 'calendar_screen.dart';
 import 'home_screen.dart';
@@ -202,9 +203,7 @@ class _AppShellState extends State<AppShell> with WidgetsBindingObserver {
       animation: Listenable.merge([_taskStore, _reminderService]),
       builder: (context, _) {
         if (_taskStore.isLoading) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
+          return const DailyFlowSplashScreen();
         }
         if (_taskStore.loadError != null) {
           return Scaffold(
